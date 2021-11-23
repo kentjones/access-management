@@ -6,22 +6,28 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class ErrorResponse {
 
-    private int statue;
+    private int status;
     private int code;
     private String property;
     private String message;
     private String developerMessage;
     private String moreInfo;
 
-    public ErrorResponse() {
-
+    public ErrorResponse(ErrorResponseBuilder builder)
+    {
+        setStatus(builder.status);
+        setCode(builder.code);
+        setProperty(builder.property);
+        setMessage(builder.message);
+        setDeveloperMessage(builder.developerMessage);
+        setMoreInfo(builder.moreInfo);
     }
 
-    public int getStatue() {
+    public int getStatus() {
         return statue;
     }
 
-    public void setStatue(int statue) {
+    private void setStatus(int statue) {
         this.statue = statue;
     }
 
@@ -29,7 +35,7 @@ public class ErrorResponse {
         return code;
     }
 
-    public void setCode(int code) {
+    private void setCode(int code) {
         this.code = code;
     }
 
@@ -37,7 +43,7 @@ public class ErrorResponse {
         return property;
     }
 
-    public void setProperty(String property) {
+    private void setProperty(String property) {
         this.property = property;
     }
 
@@ -45,7 +51,7 @@ public class ErrorResponse {
         return message;
     }
 
-    public void setMessage(String message) {
+    private void setMessage(String message) {
         this.message = message;
     }
 
@@ -53,7 +59,7 @@ public class ErrorResponse {
         return developerMessage;
     }
 
-    public void setDeveloperMessage(String developerMessage) {
+    private void setDeveloperMessage(String developerMessage) {
         this.developerMessage = developerMessage;
     }
 
@@ -61,7 +67,7 @@ public class ErrorResponse {
         return moreInfo;
     }
 
-    public void setMoreInfo(String moreInfo) {
+    private void setMoreInfo(String moreInfo) {
         this.moreInfo = moreInfo;
     }
 
@@ -87,5 +93,41 @@ public class ErrorResponse {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37).append(statue).append(code).toHashCode();
+    }
+    public static class ErrorResponseBuilder {
+        private int status;
+        private int statusCode;
+        private String property;
+        private String message;
+        private String developerMessage;
+        private String moreInfo;
+
+        public ErrorResponseBuilder(int status, String message){
+            this.status = status;
+            this.message = message;
+        }
+        public ErrorResponseBuilder setStatusCode(int statusCode)
+        {
+            this.statusCode = statusCode;
+            return this;
+        }
+        public ErrorResponseBuilder setProperty(String property)
+        {
+            this.property = property;
+            return this;
+        }
+        public ErrorResponseBuilder setDeveloperMessage(String developerMessage)
+        {
+            this.developerMessage = developerMessage;
+            return this;
+        }
+        public ErrorResponseBuilder setMoreInfo(String moreInfo)
+        {
+            this.moreInfo = moreInfo;
+            return this;
+        }
+        public ErrorResponse build(){
+            return new ErrorResponse(this);
+        }
     }
 }

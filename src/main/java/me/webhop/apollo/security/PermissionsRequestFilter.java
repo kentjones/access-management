@@ -10,6 +10,7 @@ import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.ext.Provider;
 
 import me.webhop.apollo.model.ErrorResponse;
+import static me.webhop.apollo.model.ErrorResponse.ErrorResponseBuilder;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,47 +49,38 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
             if(secureResource(resourceClass, resourceMethod))
             {
                 if(!sc.isUserInRole("privileged")){
-                    ErrorResponse er = new ErrorResponse();
-                    er.setCode(40301);
-                    er.setStatue(403);
-                    er.setMessage("User does not have the correct privileges");
-                    er.setDeveloperMessage("The security context reported this error.");
-
+                    ErrorResponse er = new ErrorResponseBuilder(403, "User does not have the correct privileges")
+                            .setStatusCode(40301)
+                            .setDeveloperMessage("The security context reported this error.")
+                            .build();
                     abortWith403Forbidden(requestContext, er);
                 }
 
                 String authorizationToken = requestContext.getHeaderString(AuthorizationToken);
 
                 if(StringUtils.isEmpty(authorizationToken)){
-                    ErrorResponse er = new ErrorResponse();
-                    er.setCode(40101);
-                    er.setStatue(401);
-                    er.setMessage("User must be signed in to access this resource");
-                    er.setDeveloperMessage("User Authorization Token is empty");
+                    ErrorResponse er = new ErrorResponseBuilder(401, "User must be signed in to access this resource")
+                            .setStatusCode(40101)
+                            .setDeveloperMessage("User Authorization Token is empty")
+                            .build();
 
                     abortWith401Unauthorized(requestContext, er);
                 }
                 if(authorizationToken.equalsIgnoreCase("authorized")){
-
-                    ErrorResponse er = new ErrorResponse();
-                    er.setCode(40302);
-                    er.setStatue(403);
-                    er.setMessage("You must have authority to access this resource");
-                    er.setDeveloperMessage("Grant user authority to this resource");
+                    ErrorResponse er = new ErrorResponseBuilder(403, "You must have authority to access this resource")
+                            .setStatusCode(40302)
+                            .setDeveloperMessage("Grant user authority to this resource")
+                            .build();
 
                     abortWith403Forbidden(requestContext, er);
-
                 }
 
             }
-
-
         } catch (Exception e) {
-            ErrorResponse er = new ErrorResponse();
-            er.setCode(50001);
-            er.setStatue(500);
-            er.setMessage(e.getMessage());
-            er.setDeveloperMessage("Permission Request throw an error. See logs for details");
+            ErrorResponse er = new ErrorResponseBuilder(500, e.getMessage())
+                                .setStatusCode(50001)
+                                .setDeveloperMessage("Permission Request throw an error. See logs for details")
+                                .build();
 
             abortWith500InternalServerError(requestContext, er);
         }
