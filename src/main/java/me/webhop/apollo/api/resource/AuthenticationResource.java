@@ -12,7 +12,7 @@ public class AuthenticationResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String getIt()
     {
-        return "Got it! It's working.";
+        return "Authentication resource is working.";
     }
 
 }
