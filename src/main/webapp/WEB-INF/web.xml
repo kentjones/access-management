@@ -13,11 +13,11 @@
       <param-name>javax.ws.rs.Application</param-name>
       <param-value>me.webhop.apollo.ApplicationConfig</param-value>
     </init-param>
+    <init-param>
+      <param-name>jersey.api.json.POJOMappingFeature</param-name>
+      <param-value>true</param-value>
+    </init-param>
     <load-on-startup>1</load-on-startup>
-<!--    <init-param>-->
-<!--      <param-name>jersey.api.json.POJOMappingFeature</param-name>-->
-<!--      <param-value>true</param-value>-->
-<!--    </init-param>-->
   </servlet>
 
 <!--  <servlet-mapping>-->

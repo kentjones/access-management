@@ -57,8 +57,9 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                     abortWith403Forbidden(requestContext, er);
                 }
 
-                String token = requestContext.getHeaderString(AuthorizationToken);
-                if(StringUtils.isEmpty(token)){
+                String authorizationToken = requestContext.getHeaderString(AuthorizationToken);
+
+                if(StringUtils.isEmpty(authorizationToken)){
                     ErrorResponse er = new ErrorResponse();
                     er.setCode(40101);
                     er.setStatue(401);
@@ -67,7 +68,8 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
 
                     abortWith401Unauthorized(requestContext, er);
                 }
-                if(token.equalsIgnoreCase("authorized")){
+                if(authorizationToken.equalsIgnoreCase("authorized")){
+
                     ErrorResponse er = new ErrorResponse();
                     er.setCode(40302);
                     er.setStatue(403);
