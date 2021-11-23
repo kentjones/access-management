@@ -9,6 +9,7 @@ public class RequestContextHelper {
 
     public static void abortWith403Forbidden(ContainerRequestContext context, ErrorResponse er)
     {
+        setContextType(context);
 
         context.abortWith(Response
                 .status(Response.Status.FORBIDDEN)
@@ -17,6 +18,8 @@ public class RequestContextHelper {
     }
     public static void abortWith401Unauthorized(ContainerRequestContext context, ErrorResponse er)
     {
+        setContextType(context);
+
         context.abortWith(Response
                 .status(Response.Status.UNAUTHORIZED)
                 .entity(er)
@@ -24,9 +27,14 @@ public class RequestContextHelper {
     }
     public static void abortWith500InternalServerError(ContainerRequestContext context, ErrorResponse er)
     {
+        setContextType(context);
+
         context.abortWith(Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(er)
                 .build());
+    }
+    private static void setContextType(ContainerRequestContext context) {
+        context.getHeaders().add("Accept", "application/json");
     }
 }
