@@ -1,40 +1,34 @@
 package me.webhop.apollo.util;
 
+import com.google.gson.Gson;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.core.Response;
 import me.webhop.apollo.model.ErrorResponse;
 
 public class RequestContextHelper {
 
+    private static final Gson gson = new Gson();
 
     public static void abortWith403Forbidden(ContainerRequestContext context, ErrorResponse er)
     {
-        setContextType(context);
 
         context.abortWith(Response
                 .status(Response.Status.FORBIDDEN)
-                .entity(er)
+                .entity(gson.toJson(er))
                 .build());
     }
     public static void abortWith401Unauthorized(ContainerRequestContext context, ErrorResponse er)
     {
-        setContextType(context);
-
         context.abortWith(Response
                 .status(Response.Status.UNAUTHORIZED)
-                .entity(er)
+                .entity(gson.toJson(er))
                 .build());
     }
     public static void abortWith500InternalServerError(ContainerRequestContext context, ErrorResponse er)
     {
-        setContextType(context);
-
         context.abortWith(Response
                 .status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(er)
+                .entity(gson.toJson(er))
                 .build());
-    }
-    private static void setContextType(ContainerRequestContext context) {
-        context.getHeaders().add("Accept", "application/json");
     }
 }
