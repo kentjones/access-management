@@ -44,9 +44,9 @@ pipeline {
       }
       steps {
 
-        copyArtifacts filter: '**/libs/*war', fingerprintArtifacts: true, projectName: 'simple-web-application', selector: lastWithArtifacts()
+        copyArtifacts filter: '**/libs/*war', fingerprintArtifacts: true, projectName: 'access-management', selector: lastWithArtifacts()
 
-        deploy adapters: [tomcat9(credentialsId: 'affeff9e-8903-42b1-93e2-8425515f7e07', path: '', url: 'http://localhost:8010/')], contextPath: 'hello', war: '**/libs/*.war'
+        deploy adapters: [tomcat9(credentialsId: 'affeff9e-8903-42b1-93e2-8425515f7e07', path: '', url: 'http://localhost:8010/')], contextPath: 'api', war: '**/libs/*.war'
       }
 //       steps {
 //         build job: 'deploy-to-dev'
@@ -57,7 +57,7 @@ pipeline {
          }
          failure {
              echo 'Deploy to Dev failed. Nothing deployed'
-             emailext body: 'The simple build application failed', recipientProviders: [buildUser()], subject: 'Simple Web Application build failed', to: 'kent.accounts@use.startmail.com'
+             emailext body: 'Project access-management build failed', recipientProviders: [buildUser()], subject: 'Access-ManagementSimple Web Application build failed', to: 'kent.accounts@use.startmail.com'
          }
        }
     }
