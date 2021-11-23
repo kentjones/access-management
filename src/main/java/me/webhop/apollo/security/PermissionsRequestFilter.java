@@ -9,6 +9,7 @@ import jakarta.ws.rs.container.ResourceInfo;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.ext.Provider;
 
+import me.webhop.apollo.model.ErrorResponse;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,21 +48,47 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
             if(secureResource(resourceClass, resourceMethod))
             {
                 if(!sc.isUserInRole("privileged")){
+                    ErrorResponse er = new ErrorResponse();
+                    er.setCode(40301);
+                    er.setStatue(403);
+                    er.setMessage("User does not have the correct privileges");
+                    er.setDeveloperMessage("The security context reported this error.");
 
-                    abortWith403Forbidden(requestContext);
+                    abortWith403Forbidden(requestContext, er);
                 }
 
                 String token = requestContext.getHeaderString(AuthorizationToken);
                 if(StringUtils.isEmpty(token)){
-                    abortWith401Unauthorized(requestContext);
+                    ErrorResponse er = new ErrorResponse();
+                    er.setCode(40101);
+                    er.setStatue(401);
+                    er.setMessage("User must be signed in to access this resource");
+                    er.setDeveloperMessage("User Authorization Token is empty");
+
+                    abortWith401Unauthorized(requestContext, er);
+                }
+                if(token.equalsIgnoreCase("authorized")){
+                    ErrorResponse er = new ErrorResponse();
+                    er.setCode(40302);
+                    er.setStatue(403);
+                    er.setMessage("You must have authority to access this resource");
+                    er.setDeveloperMessage("Grant user authority to this resource");
+
+                    abortWith403Forbidden(requestContext, er);
+
                 }
 
             }
 
 
         } catch (Exception e) {
+            ErrorResponse er = new ErrorResponse();
+            er.setCode(50001);
+            er.setStatue(500);
+            er.setMessage(e.getMessage());
+            er.setDeveloperMessage("Permission Request throw an error. See logs for details");
 
-            abortWith403Forbidden(requestContext);
+            abortWith500InternalServerError(requestContext, er);
         }
     }
 }
