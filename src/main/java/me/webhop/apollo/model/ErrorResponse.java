@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class ErrorResponse {
 
     private int status;
-    private int code;
+    private int statusCode;
     private String property;
     private String message;
     private String developerMessage;
@@ -16,7 +16,7 @@ public class ErrorResponse {
     public ErrorResponse(ErrorResponseBuilder builder)
     {
         setStatus(builder.status);
-        setCode(builder.code);
+        setStatusCode(builder.statusCode);
         setProperty(builder.property);
         setMessage(builder.message);
         setDeveloperMessage(builder.developerMessage);
@@ -24,19 +24,19 @@ public class ErrorResponse {
     }
 
     public int getStatus() {
-        return statue;
+        return status;
     }
 
-    private void setStatus(int statue) {
-        this.statue = statue;
+    private void setStatus(int status) {
+        this.status = status;
     }
 
-    public int getCode() {
-        return code;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    private void setCode(int code) {
-        this.code = code;
+    private void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     public String getProperty() {
@@ -74,8 +74,8 @@ public class ErrorResponse {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("statue", statue)
-                .append("code", code)
+                .append("statue", status)
+                .append("code", statusCode)
                 .append("message", message)
                 .toString();
     }
@@ -88,11 +88,11 @@ public class ErrorResponse {
 
         ErrorResponse that = (ErrorResponse) o;
 
-        return new EqualsBuilder().append(statue, that.statue).append(code, that.code).isEquals();
+        return new EqualsBuilder().append(status, that.status).append(statusCode, that.statusCode).isEquals();
     }
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(statue).append(code).toHashCode();
+        return new HashCodeBuilder(17, 37).append(status).append(statusCode).toHashCode();
     }
     public static class ErrorResponseBuilder {
         private int status;
