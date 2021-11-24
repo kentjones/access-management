@@ -14,7 +14,7 @@ public class AuthenticationResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public ErrorResponse getIt()
+    public ErrorResponse get()
     {
         return new ErrorResponseBuilder(201, "Authentication resource is working.").build();
 

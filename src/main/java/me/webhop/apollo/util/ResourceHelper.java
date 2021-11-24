@@ -12,8 +12,8 @@ public class ResourceHelper {
 
     public static Boolean secureResource(Class<?> resourceClass, Method resourceMethod) {
 
-        boolean methodIsSecure = resourceMethod.getAnnotation(SecureResource.class) != null;
-        boolean classIsSecure = resourceClass.getAnnotation(SecureResource.class) != null;
+        boolean methodIsSecure = resourceMethod.isAnnotationPresent(SecureResource.class);
+        boolean classIsSecure = resourceClass.isAnnotationPresent(SecureResource.class);
 
         return methodIsSecure ||classIsSecure;
     }
