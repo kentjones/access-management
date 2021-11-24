@@ -37,7 +37,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
         //
         // Step 01 - get Principal
         //
-        final ApolloSecurityContext sc = new ApolloSecurityContext(new ApolloPrincipal("Demo User"));
+        final ApolloSecugit rityContext sc = new ApolloSecurityContext(new ApolloPrincipal("Demo User"));
         requestContext.setSecurityContext(sc);
 
 

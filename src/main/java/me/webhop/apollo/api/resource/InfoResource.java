@@ -5,8 +5,10 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import me.webhop.apollo.model.ErrorResponse;
+import me.webhop.apollo.security.SecureResource;
 
 @Path("info")
+@SecureResource
 public class InfoResource {
 
     @GET
