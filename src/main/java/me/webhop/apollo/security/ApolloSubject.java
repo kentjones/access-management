@@ -4,6 +4,7 @@ import me.webhop.apollo.exception.AuthorizationException;
 
 import java.util.List;
 
+
 public interface ApolloSubject
 {
 

@@ -7,6 +7,7 @@ import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.ResourceContext;
 import jakarta.ws.rs.container.ResourceInfo;
 import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.ext.MessageBodyReader;
 import jakarta.ws.rs.ext.Provider;
 
 import me.webhop.apollo.model.ErrorResponse;
@@ -39,7 +40,6 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
         //
         final ApolloSecurityContext sc = new ApolloSecurityContext(new ApolloPrincipal("Demo User"));
         requestContext.setSecurityContext(sc);
-
 
         try {
 
