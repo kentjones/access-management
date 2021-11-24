@@ -1,5 +1,6 @@
 package me.webhop.apollo;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import jakarta.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -9,5 +10,6 @@ public class ApplicationConfig extends ResourceConfig {
     public ApplicationConfig() {
 
         packages("me.webhop.apollo.api", "me.webhop.apollo.security");
+        register(JacksonJsonProvider.class);
     }
 }
