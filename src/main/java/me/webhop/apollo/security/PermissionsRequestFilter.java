@@ -7,7 +7,6 @@ import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.container.ResourceContext;
 import jakarta.ws.rs.container.ResourceInfo;
 import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.ext.MessageBodyReader;
 import jakarta.ws.rs.ext.Provider;
 
 import me.webhop.apollo.model.ErrorResponse;
@@ -54,6 +53,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                             .setDeveloperMessage("The security context reported this error.")
                             .build();
                     abortWith403Forbidden(requestContext, er);
+                    return;
                 }
 
                 String authorizationToken = StringUtils.trim(requestContext.getHeaderString(AuthorizationToken));
@@ -65,6 +65,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                             .build();
 
                     abortWith401Unauthorized(requestContext, er);
+                    return;
                 }
                 if(!authorizationToken.equalsIgnoreCase("authorized")){
                     ErrorResponse er = new ErrorResponseBuilder(403, "You must have authority to access this resource")
@@ -73,6 +74,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                             .build();
 
                     abortWith403Forbidden(requestContext, er);
+                    return;
                 }
 
             }
