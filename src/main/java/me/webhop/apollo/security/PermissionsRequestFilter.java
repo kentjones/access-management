@@ -69,7 +69,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                 if(authorizationToken.equalsIgnoreCase("authorized")){
                     ErrorResponse er = new ErrorResponseBuilder(403, "You must have authority to access this resource")
                             .setStatusCode(40302)
-                            .setDeveloperMessage("Grant user authority to this resource")
+                            .setDeveloperMessage(String.format("Authorization token: %s", authorizationToken))
                             .build();
 
                     abortWith403Forbidden(requestContext, er);
