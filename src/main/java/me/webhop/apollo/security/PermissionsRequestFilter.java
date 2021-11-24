@@ -77,7 +77,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
 
             }
         } catch (Exception e) {
-            ErrorResponse er = new ErrorResponseBuilder(500, e.getLocalizedMessage())
+            ErrorResponse er = new ErrorResponseBuilder(500, e.getMessage())
                                 .setStatusCode(50001)
                                 .setDeveloperMessage("Permission Request throw an error. See logs for details")
                                 .build();

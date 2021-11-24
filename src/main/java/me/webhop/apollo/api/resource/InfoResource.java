@@ -12,7 +12,7 @@ import me.webhop.apollo.security.SecureResource;
 public class InfoResource {
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     public ErrorResponse getIt()
     {
         return new ErrorResponse.ErrorResponseBuilder(201, "Got it! It's working.").build();
