@@ -56,7 +56,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                     abortWith403Forbidden(requestContext, er);
                 }
 
-                String authorizationToken = requestContext.getHeaderString(AuthorizationToken);
+                String authorizationToken = StringUtils.trim(requestContext.getHeaderString(AuthorizationToken));
 
                 if(StringUtils.isEmpty(authorizationToken)){
                     ErrorResponse er = new ErrorResponseBuilder(401, "User must be signed in to access this resource")
@@ -69,7 +69,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                 if(authorizationToken.equalsIgnoreCase("authorized")){
                     ErrorResponse er = new ErrorResponseBuilder(403, "You must have authority to access this resource")
                             .setStatusCode(40302)
-                            .setDeveloperMessage(String.format("Authorization token: %s", authorizationToken))
+                            .setDeveloperMessage(String.format("Authorization token: '%s'", authorizationToken))
                             .build();
 
                     abortWith403Forbidden(requestContext, er);
