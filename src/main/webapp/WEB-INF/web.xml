@@ -9,9 +9,13 @@
       <servlet-name>Jersey-Container</servlet-name>
       <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 
+<!--    <init-param>-->
+<!--      <param-name>javax.ws.rs.Application</param-name>-->
+<!--      <param-value>me.webhop.apollo.ApplicationConfig</param-value>-->
+<!--    </init-param>-->
     <init-param>
-      <param-name>javax.ws.rs.Application</param-name>
-      <param-value>me.webhop.apollo.ApplicationConfig</param-value>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>me.webhop.apollo.api,me.webhop.apollo.security,me.webhop.apollo.model,com.fasterxml.jaxrs.json</param-value>
     </init-param>
     <init-param>
       <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
