@@ -12,6 +12,9 @@ import jakarta.ws.rs.ext.Provider;
 import me.webhop.apollo.model.ErrorResponse;
 import static me.webhop.apollo.model.ErrorResponse.ErrorResponseBuilder;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.ILoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,6 +33,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
     @Context private HttpServletRequest request;
 
     private static final String AuthorizationToken = "x-auth-token";
+    Logger logger = LoggerFactory.getLogger(PermissionsRequestFilter.class);
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
@@ -37,6 +41,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
         //
         // Step 01 - get Principal
         //
+        logger.info("Getting Principal");
         final ApolloSecurityContext sc = new ApolloSecurityContext(new ApolloPrincipal("Demo User"));
         requestContext.setSecurityContext(sc);
 
@@ -44,7 +49,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
 
             Class<?> resourceClass = resourceInfo.getResourceClass();
             Method   resourceMethod = resourceInfo.getResourceMethod();
-
+            logger.info("Checking for secure resource");
             if(secureResource(resourceClass, resourceMethod))
             {
                 if(!sc.isUserInRole("privileged")){
@@ -53,11 +58,12 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                             .setDeveloperMessage("The security context reported this error.")
                             .build();
                     abortWith403Forbidden(requestContext, er);
+                    logger.warn(er.toString());
                     return;
                 }
 
                 String authorizationToken = StringUtils.trim(requestContext.getHeaderString(AuthorizationToken));
-
+                logger.info("Checking authorization token");
                 if(StringUtils.isEmpty(authorizationToken)){
                     ErrorResponse er = new ErrorResponseBuilder(401, "User must be signed in to access this resource")
                             .setStatusCode(40101)
@@ -65,8 +71,10 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                             .build();
 
                     abortWith401Unauthorized(requestContext, er);
+                    logger.warn(er.toString());
                     return;
                 }
+                logger.info("check user authorized");
                 if(!authorizationToken.equalsIgnoreCase("authorized")){
                     ErrorResponse er = new ErrorResponseBuilder(403, "You must have authority to access this resource")
                             .setStatusCode(40302)
@@ -74,6 +82,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                             .build();
 
                     abortWith403Forbidden(requestContext, er);
+                    logger.warn(er.toString());
                     return;
                 }
 
@@ -83,7 +92,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                                 .setStatusCode(50001)
                                 .setDeveloperMessage("Permission Request throw an error. See logs for details")
                                 .build();
-
+            logger.error(er.toString(), e);
             abortWith500InternalServerError(requestContext, er);
         }
     }

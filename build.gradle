@@ -26,16 +26,16 @@ dependencies {
 	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '3.0.3'
 	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '3.0.3'
 	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-simple-http', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.containers.glassfish', name: 'jersey-gf-ejb', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.containers.glassfish', name: 'jersey-gf-ejb', version: '3.0.3'
 
-	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-bean-validation', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-entity-filtering', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-metainf-services', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.ext.microprofile', name: 'jersey-mp-config', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-bean-validation', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-freemarker', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-jsp', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-bean-validation', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-entity-filtering', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-metainf-services', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.ext.microprofile', name: 'jersey-mp-config', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-bean-validation', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-freemarker', version: '3.0.3'
+//	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-jsp', version: '3.0.3'
 
 	implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
 
@@ -56,9 +56,14 @@ dependencies {
 	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
 	implementation group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.13.0'
 
+    // logging:
+    implementation group: 'commons-logging', name: 'commons-logging', version: '1.2'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.2.7'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.7'
+    implementation group: 'ch.qos.logback', name: 'logback-access', version: '1.2.7'
 
 
-	testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
 	testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
 	testCompileOnly 'junit:junit:4.13.2'
