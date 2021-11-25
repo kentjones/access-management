@@ -9,7 +9,7 @@ public class ApplicationConfig extends ResourceConfig {
 
     public ApplicationConfig() {
 
-        packages("me.webhop.apollo.api", "me.webhop.apollo.security", "com.fasterxml.jaxrs.json");
-//        register(JacksonJsonProvider.class);
+        packages("me.webhop.apollo.api", "me.webhop.apollo.security", "me.webhop.apollo.model", "com.fasterxml.jaxrs.json");
+        register(JacksonJsonProvider.class);
     }
 }
