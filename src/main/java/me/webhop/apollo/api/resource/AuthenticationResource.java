@@ -4,6 +4,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import me.webhop.apollo.model.ErrorResponse;
 import me.webhop.apollo.security.SecureResource;
 
@@ -14,9 +15,11 @@ public class AuthenticationResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public ErrorResponse get()
+    public Response get()
     {
-        return new ErrorResponseBuilder(201, "Authentication resource is working.").build();
+        ErrorResponse response = new ErrorResponseBuilder(201, "Authentication resource is working.").build();
+
+        return Response.ok().entity(response).build();
 
     }
 
