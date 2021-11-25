@@ -14,18 +14,32 @@ repositories {
 	mavenCentral()
 }
 dependencies {
+	// https://mvnrepository.com/artifact/
 
 	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 
-	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.core', name: 'jersey-common', version: '3.0.3'
 	implementation group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.bundles', name: 'jaxrs-ri', version: '3.0.3'
 
-	// https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api
+	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-simple-http', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.containers.glassfish', name: 'jersey-gf-ejb', version: '3.0.3'
+
+	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-bean-validation', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-entity-filtering', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-metainf-services', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.ext.microprofile', name: 'jersey-mp-config', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-bean-validation', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-freemarker', version: '3.0.3'
+	implementation group: 'org.glassfish.jersey.ext', name: 'jersey-mvc-jsp', version: '3.0.3'
+
 	implementation group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1.1'
 
 	// https://mvnrepository.com/artifact/org.glassfish.jersey.core
-	implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '3.0.3'
-	implementation group: 'org.glassfish.jersey.core', name: 'jersey-common', version: '3.0.3'
 	implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '3.0.3'
 	implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '3.0.3'
 

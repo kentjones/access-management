@@ -14,7 +14,7 @@
 <!--      <param-value>me.webhop.apollo.ApplicationConfig</param-value>-->
 <!--    </init-param>-->
     <init-param>
-      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-name>jersey.config.server.provider.packages</param-name>
       <param-value>me.webhop.apollo.api,me.webhop.apollo.security,me.webhop.apollo.model,com.fasterxml.jaxrs.json</param-value>
     </init-param>
     <init-param>
