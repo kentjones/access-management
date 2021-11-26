@@ -1,11 +1,17 @@
 package me.webhop.apollo;
 
+import me.webhop.apollo.api.resource.AuthenticationResource;
+import me.webhop.apollo.api.resource.InfoResource;
 import org.glassfish.jersey.server.ResourceConfig;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import jakarta.ws.rs.ApplicationPath;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @ApplicationPath("api")

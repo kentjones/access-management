@@ -1,9 +1,11 @@
 package me.webhop.apollo.model;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+@XmlRootElement(name = "error")
 public class ErrorResponse {
 
     private int status;
