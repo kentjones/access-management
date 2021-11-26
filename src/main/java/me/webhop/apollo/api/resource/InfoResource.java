@@ -19,7 +19,8 @@ public class InfoResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response execute()
     {
-        logger.info("Starting get:info");
+        logger.info("Execute @Get InfoResource");
+
         ErrorResponse response = new ErrorResponse.ErrorResponseBuilder(201, "Got it! It's working.").build();
 
         return Response.ok().entity(response).build();

@@ -87,6 +87,7 @@ public class PermissionsRequestFilter implements ContainerRequestFilter {
                 }
 
             }
+            logger.info("Calling resource {}.{} ",resourceClass.getName(), resourceMethod.getName());
         } catch (Exception e) {
             ErrorResponse er = new ErrorResponseBuilder(500, e.getMessage())
                                 .setStatusCode(50001)
