@@ -16,6 +16,9 @@ repositories {
 }
 dependencies {
 
+	// requrired for tomee restful services (minimum version 1.3.7)
+	// @see https://tomee.apache.org/tomee-9.0/examples/jaxrs-json-provider-jettison.html
+	implementation group: 'org.codehaus.jettison', name: 'jettison', version: '1.4.1'
 
 	implementation 'javax.servlet:javax.servlet-api:4.0.1'
 
