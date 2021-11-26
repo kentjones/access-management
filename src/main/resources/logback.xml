@@ -13,8 +13,7 @@
     </layout>
   </appender>
 
-  <appender name="FILE"
-            class="ch.qos.logback.core.rolling.RollingFileAppender">
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
     <File>logFile.log</File>
     <rollingPolicy
             class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
