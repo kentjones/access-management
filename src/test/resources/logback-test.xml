@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <configuration scan="true" scanPeriod="3 seconds" debug="true">
+  <property name="LOG_FOLDER" value="${LOG_BACK_DIR}" />
 
   <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
 
@@ -13,7 +14,7 @@
   </appender>
 
   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <File>${LOG_BACK_DIR}/access-management.log</File>
+    <File>${LOG_FOLDER}/access-management.log</File>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <FileNamePattern>
         logFile.%d{yyyy-MM-dd_HH-mm}.log.zip
